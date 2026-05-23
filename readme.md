@@ -17,10 +17,9 @@ central de atendimento inteligente — o cliente envia um áudio, o sistema proc
 
 ## Arquitetura
 
-```
 ![Arquitetura](assets/Arquitetura.png)
 
-```
+
 
 ---
 
