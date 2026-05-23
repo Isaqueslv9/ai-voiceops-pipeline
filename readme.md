@@ -1,4 +1,3 @@
-```markdown
 # AI VoiceOps Pipeline
 
 Este projeto foi desenvolvido durante meus estudos para a certificação AWS AI Practitioner na Escola da Nuvem. A ideia surgiu ao combinar três laboratórios práticos sobre três serviços diferentes ( Amazon Transcribe, Comprehend e Polly ) em uma única pipeline real
@@ -101,5 +100,3 @@ results/{job_id}/
 - [ ] Dashboard no CloudWatch para monitoramento em tempo real
 - [ ] Terraform para infraestrutura como código
 - [ ] Suporte a múltiplos idiomas
-
-```
