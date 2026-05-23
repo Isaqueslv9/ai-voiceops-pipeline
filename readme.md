@@ -8,11 +8,16 @@ Em vez de usar cada serviço isoladamente, projetei uma arquitetura serverless o
 
 ## Visão Geral
 
-Pipeline serverless na AWS que recebe um arquivo de áudio, transcreve para texto, analisa sentimento, entidades e PII com NLP, e retorna uma resposta automática em voz.
+> Pipeline serverless que ouve um áudio de cliente, entende o que foi dito,
+> detecta se a pessoa está satisfeita ou insatisfeita, e responde automaticamente
+> com uma voz sintetizada — tudo em menos de 20 segundos, sem nenhum operador humano.
 
-**Caso de uso:** 
-central de atendimento inteligente — o cliente envia um áudio, o sistema processa do início ao fim e responde com voz sintetizada, sem operador humano.
+Pipeline serverless na AWS que recebe um arquivo de áudio, transcreve para texto,
+analisa sentimento, entidades e PII com NLP, e retorna uma resposta automática em voz.
 
+**Caso de uso:**
+central de atendimento inteligente: o cliente envia um áudio, o sistema processa
+do início ao fim e responde com voz sintetizada, sem operador humano.
 ---
 
 ## Arquitetura
