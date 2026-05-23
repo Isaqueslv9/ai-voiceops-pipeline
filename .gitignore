@@ -2,4 +2,4 @@ __pycache__/
 *.pyc
 .env
 *.zip
-assets/ai-voiceops-pipeline.drawio
+ai-voiceops-pipeline.drawio
