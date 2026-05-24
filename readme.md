@@ -8,9 +8,7 @@ Em vez de usar cada serviço isoladamente, projetei uma arquitetura serverless o
 
 ## Visão Geral
 
-> Pipeline serverless que ouve um áudio de cliente, entende o que foi dito,
-> detecta se a pessoa está satisfeita ou insatisfeita, e responde automaticamente
-> com uma voz sintetizada — tudo em menos de 20 segundos, sem nenhum operador humano.
+Pipeline serverless que ouve um áudio de cliente, entende o que foi dito, detecta se a pessoa está satisfeita ou insatisfeita, e responde automaticamente com uma voz sintetizada, tudo em menos de 20 segundos, sem nenhum operador humano.
 
 ## Caso de uso:
 Central de atendimento inteligente: o cliente envia um áudio, o sistema processa
@@ -36,7 +34,7 @@ do início ao fim e responde com voz sintetizada, sem operador humano.
 - Amazon Comprehend — NLP: sentimento, entidades, frases-chave, PII
 - Amazon Polly — text-to-speech Neural engine, voz Camila (pt-BR)
 - Python 
-
+- GitHub Actions
 
 
 ---
@@ -46,10 +44,11 @@ do início ao fim e responde com voz sintetizada, sem operador humano.
 1. **Upload** — arquivo de áudio (MP3, WAV, OGG) enviado para o bucket `voiceops-input`
 2. **Trigger** — evento `ObjectCreated` aciona a Lambda automaticamente
 3. **job_id** — UUID gerado para rastrear todos os arquivos da execução
-4. **Transcribe** — job iniciado via boto3, polling a cada 5s até conclusão
-5. **Comprehend** — texto analisado: sentimento, entidades, frases-chave e PII
-6. **Polly** — resposta selecionada pelo sentimento, sintetizada em MP3 com engine Neural
+4. **Transcribe** — job iniciado via boto3 com diarização ativada, polling a cada 5s até conclusão
+5. **Comprehend** — texto analisado: sentimento, entidades, frases-chave e detecção de PII
+6. **Polly** — resposta selecionada pelo sentimento detectado, sintetizada em MP3 com engine Neural e voz Camila (pt-BR)
 7. **Output** — três arquivos salvos no S3 sob `results/{job_id}/`
+8. **Deploy** — atualização do código da Lambda automatizada via GitHub Actions ao fazer push na `main`
 
 ---
 
@@ -95,7 +94,7 @@ results/{job_id}/
 ---
 
 ## Melhorias Futuras
-- [ ] GitHub Actions para deploy automático da Lambda
+
 - [ ] API Gateway para receber áudio via HTTP
 - [ ] Amazon Bedrock para resumo automático da transcrição
 - [ ] Amazon SQS + DLQ para resiliência do pipeline
