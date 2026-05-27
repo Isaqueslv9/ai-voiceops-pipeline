@@ -25,7 +25,7 @@ jobs:
 
       - name: Empacotar codigo lambda para zip
         run: |
-          cd lambda && zip -r ../lambda.zip lambda_function.py
+          cd lambda && zip -r ../lambda.zip lambda_function.py bedrock.py
 
       - name: Deploy no Lambda
         run: |

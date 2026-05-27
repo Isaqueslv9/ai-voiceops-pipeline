@@ -5,6 +5,7 @@ import urllib.request
 import logging
 import boto3
 import os
+from bedrock import generate_response
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -126,9 +127,17 @@ def lambda_handler(event, context):
     }))
 
    
-    # Polly: escolhe a resposta pelo sentimento e gera o MP3
-   
-    response_text = RESPONSES.get(sentiment, RESPONSES["NEUTRAL"])
+   #  Bedrock gera a resposta personalizada
+    response_text = generate_response(transcript_text, sentiment)
+
+
+    logger.info(json.dumps({
+        "job_id":        job_id,
+        "status":        "BEDROCK_RESPONSE_GENERATED",
+        "response_text": response_text
+    }))
+
+    # O Polly pega o texto que o Bedrock gerou e transforma em voz.
 
     polly_response = polly.synthesize_speech(
         Text=response_text,
